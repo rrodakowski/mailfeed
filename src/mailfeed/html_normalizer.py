@@ -64,7 +64,7 @@ class HTMLNormalizer:
         Returns:
             HTML with absolute image paths
         """
-        domarticle = lxml.html.fromstring(article.encode("utf-8"))
+        domarticle = lxml.html.fromstring(article)
         last_index = link.rindex('.')
         last_index = last_index + 4
         link_prefix = link[0:last_index]
@@ -86,7 +86,7 @@ class HTMLNormalizer:
             HTML with standardized image attributes
         """
         attrs = self.config.get_email_image_styles()
-        domarticle = lxml.html.fromstring(article.encode("utf-8"))
+        domarticle = lxml.html.fromstring(article)
 
         for img in domarticle.xpath('//img'):
             img.attrib['width'] = str(attrs['width'])
